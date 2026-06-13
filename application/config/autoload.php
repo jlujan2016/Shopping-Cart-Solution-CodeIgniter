@@ -59,6 +59,17 @@ $autoload['packages'] = array();
   |
   |	$autoload['libraries'] = array('user_agent' => 'ua');
  */
+// Si es una petición de la API, usar configuración mínima
+if (defined('IS_API') && IS_API === TRUE) {
+    $autoload['libraries'] = array('database');
+    $autoload['helper']    = array('url', 'jwt', 'env');
+    $autoload['model']     = array();
+    $autoload['language']  = array();
+    $autoload['config']    = array();
+    $autoload['drivers']   = array();
+    return; // ← Salir antes de cargar el resto
+}
+
 $autoload['libraries'] = array(
     'database',
     'session',
@@ -107,7 +118,8 @@ $autoload['helper'] = array(
     'rcopy',
     'rrmdir',
     'rreadDir',
-    'savefile'
+    'savefile',
+    'jwt'
 );
 
 /*
@@ -152,3 +164,9 @@ $autoload['language'] = array();
   |	$autoload['model'] = array('first_model' => 'first');
  */
 $autoload['model'] = array('Public_model', 'Home_admin_model');
+
+// Si es una petición de API, usar configuración mínima
+if (isset($_SERVER['REQUEST_URI']) && strpos($_SERVER['REQUEST_URI'], '/api/') !== false) {
+    $autoload['libraries'] = array('database');
+    $autoload['helper']    = array('url');
+}
