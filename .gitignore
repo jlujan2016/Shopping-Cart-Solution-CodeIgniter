@@ -1,2 +1,28 @@
 # Ignorar el archivo principal de base de datos
 application/config/database.php
+
+# Entorno
+.env
+*.env
+
+# Archivos temporales
+hash.php
+*.log
+
+# Dependencias (si usas Composer)
+vendor/
+
+# Cache de CI
+application/cache/*
+!application/cache/index.html
+
+# Logs de CI
+application/logs/*
+!application/logs/index.html
+
+# Uploads del e-commerce (si los hay)
+uploads/
+
+# OS
+.DS_Store
+Thumbs.db
