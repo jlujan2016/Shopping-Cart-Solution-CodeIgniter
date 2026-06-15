@@ -214,12 +214,13 @@ $route['translate_uri_dashes'] = FALSE;
 
 // Rutas API (solo activas cuando se accede por api/index.php)
 if (defined('IS_API') && IS_API === TRUE) {
-    $route['auth/login']      = 'api/Auth/login';
-    $route['joyas']           = 'api/Joyas/index';
-    $route['joyas/crear']     = 'api/Joyas/crear';
-    $route['joyas/sync']      = 'api/Joyas/sync';
-    $route['tomas/sync']      = 'api/Tomas/sync';
-    $route['tomas']           = 'api/Tomas/index';
+    $route['auth/login']         = 'api/Auth/login';
+    $route['joyas']              = 'api/Joyas/index';
+    $route['joyas/crear']        = 'api/Joyas/crear';
+    $route['joyas/sync']         = 'api/Joyas/sync';
+    $route['tomas']              = 'api/Tomas/index';
+    $route['tomas/sync']         = 'api/Tomas/sync';
+    $route['tomas/detalle/(:num)'] = 'api/Tomas/detalle/$1';
     $route['default_controller'] = 'api/Auth';
     return;
 }
