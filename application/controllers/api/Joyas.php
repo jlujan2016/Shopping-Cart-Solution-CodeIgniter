@@ -24,7 +24,12 @@ class Joyas extends CI_Controller {
 
     private function validar_token() {
         $headers = $this->input->request_headers();
-        $auth = isset($headers['Authorization']) ? $headers['Authorization'] : '';
+        
+        // Convertimos todas las llaves a minúsculas para eliminar el conflicto de XAMPP/Apache
+        $headers = array_change_key_case($headers, CASE_LOWER);
+        
+        // Ahora buscamos la cabecera siempre en minúsculas
+        $auth = isset($headers['authorization']) ? $headers['authorization'] : '';
 
         if (strpos($auth, 'Bearer ') !== 0) {
             $this->json_response(false, 'Token no proporcionado', null, 401);

@@ -24,7 +24,10 @@ class Tomas extends CI_Controller {
 
     private function validar_token() {
         $headers = $this->input->request_headers();
-        $auth = isset($headers['Authorization']) ? $headers['Authorization'] : '';
+        
+        // Normalizamos las llaves a minúsculas igual que en Joyas.php
+        $headers = array_change_key_case($headers, CASE_LOWER);
+        $auth = isset($headers['authorization']) ? $headers['authorization'] : '';
 
         if (strpos($auth, 'Bearer ') !== 0) {
             $this->json_response(false, 'Token no proporcionado', null, 401);
@@ -39,6 +42,7 @@ class Tomas extends CI_Controller {
 
         $this->usuario_actual = $data;
     }
+
 
     // GET /api/tomas
     public function index() {
