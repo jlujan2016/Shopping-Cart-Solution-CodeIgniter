@@ -87,6 +87,7 @@ class Tomas extends CI_Controller {
                 'toma_id'    => $toma_id,
                 'epc'        => $tag['epc'],
                 'rssi'       => isset($tag['rssi']) ? $tag['rssi'] : null,
+                'veces_detectado' => isset($tag['veces_detectado']) ? $tag['veces_detectado'] : 1,
                 'scanned_at' => isset($tag['scanned_at']) ? $tag['scanned_at'] : date('Y-m-d H:i:s'),
             ));
         }
